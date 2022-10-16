@@ -58,7 +58,7 @@ const VerifyNumberScreen = () => {
     );
   return (
     <AppScreen style={styles.container}>
-      <AppRow mx={5}>
+      <AppRow mx={5} mt={20}>
         <AppRow ai="center">
           <TouchableOpacity
             style={styles.back}
