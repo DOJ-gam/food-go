@@ -28,7 +28,7 @@ const LoginScreen = () => {
     <AppScreen style={styles.container}>
       <AppRow mx={5}>
         <AppLogo />
-        <TouchableOpacity onPress={handleToRegister}>
+        <TouchableOpacity onPress={() => navigation.navigate("AppStack")}>
           <AppRow ai="center">
             <AppText small color={colors.primary} fw="bold">
               Skip now
