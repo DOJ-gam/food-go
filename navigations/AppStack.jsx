@@ -1,11 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import useAppTheme from "../hooks/useTheme";
-import HomeScreen from "../screens/home";
-import TransactionsButton from "./TransactionsButton";
-import TransactionsScreen from "../screens/transactiions";
-import AccountScreen from "../screens/account/Account";
 import HomeStack from "./HomeStack";
 
 const Tab = createBottomTabNavigator();
@@ -16,20 +12,28 @@ const AppStack = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveBackgroundColor: "#eee",
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveBackgroundColor: "#eee",
-        tabBarInactiveTintColor: colors.black,
+        tabBarActiveBackgroundColor: colors.primary,
+        tabBarActiveTintColor: colors.white,
+        tabBarInactiveBackgroundColor: colors.primary,
+        tabBarInactiveTintColor: "#eee",
 
         tabBarStyle: {
-          elevation: 20,
-          borderBottomRightRadius: 10,
-          borderBottomLeftRadius: 80,
           borderColor: colors.grey,
-          marginBottom: 1,
+          backgroundColor: colors.primary,
+          borderWidth: 1,
+          justifyContent: "flex-end",
+          borderTopRightRadius: 200,
+          borderTopLeftRadius: 200,
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          // height: 70,
+          // transform: [{ perspective: 850 }, { scaleY: 0.7 }],
+          overflow: "hidden",
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          // fontSize: 12,
+          marginTop: -5,
+          // marginBottom: 5,
         },
       }}
     >
@@ -44,22 +48,29 @@ const AppStack = () => {
         }}
       />
       <Tab.Screen
-        name="Transactions"
-        component={TransactionsScreen}
-        options={({ navigation }) => ({
-          tabBarButton: () => (
-            <TransactionsButton
-              onPress={() => navigation.navigate("Transactions")}
-            />
-          ),
-        })}
-      />
-      <Tab.Screen
-        name="Account"
-        component={AccountScreen}
+        name="Search"
+        component={HomeStack}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="account" size={size} color={color} />
+            <Feather name="search" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favourite"
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="heart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Shop"
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="shopping-cart" size={size} color={color} />
           ),
         }}
       />

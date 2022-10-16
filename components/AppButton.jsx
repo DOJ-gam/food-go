@@ -4,9 +4,17 @@ import useAppTheme from "../hooks/useTheme";
 import AppText from "./AppText";
 import appStyles from "../constants/styles";
 
-const AppButton = ({ onPress = () => {}, style, title, textStyle }) => {
+const AppButton = ({
+  alignSelf = "stretch",
+  onPress = () => {},
+  my = 0,
+  style,
+  title,
+  textStyle,
+  width = "100%",
+}) => {
   const { colors } = useAppTheme();
-  const styles = makeStyles(colors);
+  const styles = makeStyles({ alignSelf, colors, my, width });
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       <AppText style={[textStyle, styles.text]}>{title}</AppText>
@@ -16,15 +24,17 @@ const AppButton = ({ onPress = () => {}, style, title, textStyle }) => {
 
 export default AppButton;
 
-const makeStyles = (colors) =>
+const makeStyles = ({ alignSelf, colors, my, width }) =>
   StyleSheet.create({
     button: {
-      backgroundColor: colors.primary,
-      borderRadius: 25,
       alignItems: "center",
+      alignSelf,
+      backgroundColor: colors.primary,
+      borderRadius: 15,
       justifyContent: "center",
       padding: 15,
-      width: "100%",
+      marginVertical: my,
+      width,
     },
     text: {
       fontWeight: "bold",

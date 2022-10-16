@@ -3,20 +3,23 @@ import React from "react";
 
 import useAppTheme from "../hooks/useTheme";
 import appStyles from "../constants/styles";
+import AppText from "./AppText";
 
 const AppTextInput = ({
   containerStyle,
   inputStyle,
+  label,
   leftIcon,
   rightIcon,
   ...rest
 }) => {
   const { colors } = useAppTheme();
-  const styles = makeStyles(colors);
+  const styles = makeStyles({ colors, label });
   return (
     <View style={[styles.container, containerStyle]}>
+      {label && <AppText style={styles.label}>{label}</AppText>}
       {leftIcon && leftIcon}
-      <TextInput style={[styles.input, inputStyle]} {...rest} />
+      <TextInput style={[styles.input, inputStyle]} {...rest} placehol />
       {rightIcon && rightIcon}
     </View>
   );
@@ -24,22 +27,28 @@ const AppTextInput = ({
 
 export default AppTextInput;
 
-const makeStyles = (colors) =>
+const makeStyles = ({ colors, label }) =>
   StyleSheet.create({
     container: {
-      backgroundColor: colors.light,
-      //   borderRadius: 25,
+      backgroundColor: "#eee",
+      borderRadius: 12,
       flexDirection: "row",
       alignItems: "center",
       width: "100%",
-      padding: 15,
-      marginVertical: 10,
-      borderBottomWidth: 1,
-      borderColor: colors.grey,
+      padding: 13,
+      marginVertical: label ? 20 : 10,
     },
     input: {
       ...appStyles.text,
       flex: 1,
-      marginHorizontal: 5,
+      marginHorizontal: 8,
+      fontSize: 16,
+    },
+    label: {
+      position: "absolute",
+      top: -20,
+      fontSize: 14,
+      fontWeight: "bold",
+      color: "#555",
     },
   });

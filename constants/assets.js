@@ -18,10 +18,18 @@ export const colors = {
   card: "rgb(255, 255, 255)",
   medium: "#6e6969",
 };
-export const icons = {};
+export const icons = {
+  logo: require("../assets/icons/logo.png"),
+  google: require("../assets/icons/google.png"),
+  facebook: require("../assets/icons/facebook.png"),
+};
 
-export const images = {};
-export const animations = {};
+export const images = {
+  bg: require("../assets/images/bg.png"),
+};
+export const animations = {
+  success: require("../assets/animations/success.json"),
+};
 
 const assets = {
   sizes,
